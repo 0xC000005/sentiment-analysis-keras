@@ -1,5 +1,4 @@
 import json
-
 import keras
 import keras_preprocessing
 import numpy as np
@@ -18,7 +17,7 @@ model = keras.models.load_model('model')
 
 
 def perform_sentimental_analysis(word):
-    twt = [word]
+    twt = word
     # vectorizing the tweet by the pre-fitted tokenizer instance
     twt = tokenizer.texts_to_sequences(twt)
     # padding the tweet to have exactly the same shape as `embedding_2` input
@@ -29,20 +28,22 @@ def perform_sentimental_analysis(word):
     if (np.argmax(sentiment) == 0):
         # print("negative")
         dict = {
-            "word": word,
-            "pos_acc": sentiment[1],
-            "neg_acc": sentiment[0],
-            "result": "negative",
+            "word": str(word),
+            "pos_acc": float(sentiment[1]),
+            "neg_acc": float(sentiment[0]),
+            "positive_result": False,
         }
+        dict = json.dumps(dict)
         return dict
     elif (np.argmax(sentiment) == 1):
         # print("positive")
         dict = {
-            "word": word,
-            "pos_acc": sentiment[1],
-            "neg_acc": sentiment[0],
-            "result": "positive",
+            "word": str(word),
+            "pos_acc": float(sentiment[1]),
+            "neg_acc": float(sentiment[0]),
+            "positive_result": True,
         }
+        dict = json.dumps(dict)
         return dict
 
     # print("pos_acc: " + str(sentiment[1]) + "% \nneg_acc: " + str(sentiment[0]) + "%")
@@ -50,7 +51,7 @@ def perform_sentimental_analysis(word):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    test_sentence = ['I','had', 'a', 'good', 'day']
+    test_sentence = ["I had a very good day"]
     ans = []
     for word in test_sentence:
         ans.append(perform_sentimental_analysis(word))
