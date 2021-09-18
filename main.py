@@ -46,7 +46,7 @@ def perform_sentimental_analysis(word):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    test_sentence = ['I', 'had', 'a', 'very', 'good','day']
+    test_sentence = ['After', 'using', 'the', 'Unfold', 'AI','therapy', 'I', 'feel', 'much', 'better', 'now']
     ans = []
     for word in test_sentence:
         ans.append(perform_sentimental_analysis(word))
