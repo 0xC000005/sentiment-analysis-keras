@@ -1,8 +1,8 @@
 import json
 
+import keras
 import keras_preprocessing
 import numpy as np
-import keras
 from keras.preprocessing.sequence import pad_sequences
 
 # This is a sample Python script.
@@ -54,4 +54,5 @@ if __name__ == '__main__':
     ans = []
     for word in test_sentence:
         ans.append(perform_sentimental_analysis(word))
-    print(ans)
+    for result in ans:
+        print(result)
