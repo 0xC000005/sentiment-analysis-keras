@@ -22,33 +22,28 @@ def perform_sentimental_analysis(word):
 
     if (np.argmax(sentiment) == 0):
         # print("negative")
-        dict = {
+        return {
             "word": str(word),
             "pos_acc": float(sentiment[1]),
             "neg_acc": float(sentiment[0]),
             "positive_result": False,
         }
-        dict = json.dumps(dict)
-        return dict
     elif (np.argmax(sentiment) == 1):
         # print("positive")
-        dict = {
+        return {
             "word": str(word),
             "pos_acc": float(sentiment[1]),
             "neg_acc": float(sentiment[0]),
             "positive_result": True,
         }
-        dict = json.dumps(dict)
-        return dict
-
     # print("pos_acc: " + str(sentiment[1]) + "% \nneg_acc: " + str(sentiment[0]) + "%")
+
+
+def analyze(sentence: str):
+    return (perform_sentimental_analysis(word) for word in sentence.split())
 
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    test_sentence = ['After', 'using', 'the', 'Unfold', 'AI','therapy', 'I', 'feel', 'much', 'better', 'now']
-    ans = []
-    for word in test_sentence:
-        ans.append(perform_sentimental_analysis(word))
-    for result in ans:
-        print(result)
+    test_sentence = 'After using the Unfold AI therapy I feel much better now'
+    print('\n'.join(analyze(test_sentence)))
