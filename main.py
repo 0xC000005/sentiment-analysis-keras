@@ -4,11 +4,6 @@ import keras_preprocessing
 import numpy as np
 from keras.preprocessing.sequence import pad_sequences
 
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
 with open('tokenizer.json') as f:
     data = json.load(f)
     tokenizer = keras_preprocessing.text.tokenizer_from_json(data)
@@ -51,7 +46,7 @@ def perform_sentimental_analysis(word):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    test_sentence = ["I had a very good day"]
+    test_sentence = ['I', 'had', 'a', 'very', 'good','day']
     ans = []
     for word in test_sentence:
         ans.append(perform_sentimental_analysis(word))
